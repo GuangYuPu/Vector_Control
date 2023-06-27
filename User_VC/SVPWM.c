@@ -3,11 +3,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "task.h"
+
 #include "Coordinate_Trans.h"
 
 #define TIM1_ARR 1000-1
-
-float Ud,Ua_ref,Ub_ref,Uc_ref; //extern in .h
 
 //在定时器向下溢出中断中更新三相桥的占空比
 void Svpwm_Calculate(Svpwm_t *Svpwm,float Ud,float Ua_ref,float Ub_ref,float Uc_ref)
@@ -90,7 +89,7 @@ void Svpwm_Calculate(Svpwm_t *Svpwm,float Ud,float Ua_ref,float Ub_ref,float Uc_
         t1 = sqrt(2)*(sin(theta_f)*Uref_len)/Ud;//(0,1,1)
         t2 = sqrt(2)*(sin(PI/3 - theta_f)*Uref_len)/Ud;//(0,1,0)
         if((t1+t2)>1)
-        {
+        { 
             t1 = t1/(t1+t2);
             t2 = t2/(t1+t2);
         }  

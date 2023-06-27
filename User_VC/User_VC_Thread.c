@@ -5,6 +5,8 @@
 #include "Coordinate_Trans.h"
 #include "tim.h"
 #include "SVPWM.h"
+#include "VC_Controller.h"
+#include "FeedBack.h"
 
 
 void Task_VC(void *argument)
@@ -14,11 +16,18 @@ void Task_VC(void *argument)
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+
+    User_VC_init();
+    while (1)
+    {
+      Sample_Refesh(&Sample_i,&Sample_u,ia,ib,ic);
+      vTaskDelay(1);
+    }
+    
 }
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+void HAL_TIM_In_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  
   if (htim->Instance == TIM1) {
     Svpwm_t Duty_abc;
     Svpwm_Calculate(&Duty_abc,Ud,Ua_ref,Ub_ref,Uc_ref);
@@ -26,11 +35,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,Duty_abc.ccRB);
     __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_3,Duty_abc.ccRC);
   }
-  
-  if (htim->Instance == TIM7) {
-    HAL_IncTick();
-  }
-  
 }
 
 void Task_VC_start()
