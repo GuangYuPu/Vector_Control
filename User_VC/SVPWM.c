@@ -11,6 +11,7 @@
 //在定时器向下溢出中断中更新三相桥的占空比
 void Svpwm_Calculate(Svpwm_t *Svpwm,float Ud,float Ua_ref,float Ub_ref,float Uc_ref)
 {
+    //计算均以矢量进行
     //坐标变换
     CT_data_t svpwm_ref;
     svpwm_ref.abc_value.a = sqrt(2/3)*Ua_ref;

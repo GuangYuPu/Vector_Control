@@ -6,8 +6,6 @@ float Ud,ia,ib,ic,ua,ub,uc;//直接采样值
 CT_data_t Sample_i,Sample_u;//储存并处理采样数据
 float amplitude_pll,theta_pll;//采自锁相环
 
-float id_ref,iq_ref;//电流环输入
-float ud_ref,uq_ref;//电流环输出
 float Ua_ref,Ub_ref,Uc_ref;//SVPWM输入
 
 float theta_ref;

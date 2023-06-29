@@ -35,9 +35,9 @@ void CT_Refresh_dq(CT_data_t *CTdata,float d,float q,float theta)
     CTdata->abc_value.a 
     = cos(theta)*CTdata->dq_value.d - sin(theta)*CTdata->dq_value.q;
     CTdata->abc_value.b
-    = cos(theta-2*PI/3)*CTdata->dq_value.d - sin(theta+2*PI/3)*CTdata->dq_value.q;
+    = cos(theta-2*PI/3)*CTdata->dq_value.d - sin(theta-2*PI/3)*CTdata->dq_value.q;
     CTdata->abc_value.c
-   = cos(theta-2*PI/3)*CTdata->dq_value.d - sin(theta+2*PI/3)*CTdata->dq_value.q;
+   = cos(theta+2*PI/3)*CTdata->dq_value.d - sin(theta+2*PI/3)*CTdata->dq_value.q;
 
     CTdata->AlphaBeta_value.alpha 
     = (cos(theta))*CTdata->dq_value.d - (sin(theta))*CTdata->dq_value.q;

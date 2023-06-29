@@ -46,6 +46,7 @@ void VoltageServo(float* Ua_out,float* Ub_out,float* Uc_out,float ud_ref,float u
 void CurrentServo(VC_t* hVC_in,float ud_ref,float uq_ref,float theta_pll);
 
 void PID_Calc(PID_t *pid);
+
 #ifdef __cplusplus
 }
 #endif
