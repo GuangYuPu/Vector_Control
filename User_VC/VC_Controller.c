@@ -4,11 +4,17 @@
 //extern in .h
 float Ud,ia,ib,ic,ua,ub,uc;//直接采样值
 CT_data_t Sample_i,Sample_u;//储存并处理采样数据
-float Um_pll,theta_pll;//采自锁相环
+float amplitude_pll,theta_pll;//采自锁相环
 
 float id_ref,iq_ref;//电流环输入
 float ud_ref,uq_ref;//电流环输出
 float Ua_ref,Ub_ref,Uc_ref;//SVPWM输入
+
+float theta_ref;
+float Ud_Servo = 0;
+float Uq_Servo = 0;
+float Id_Servo = 0;
+float Iq_Servo = 0;//对外输入接口
 
 VC_t hVC;//相当于hDJI
 

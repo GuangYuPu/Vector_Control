@@ -6,7 +6,7 @@
 
 #include "Coordinate_Trans.h"
 
-#define TIM1_ARR 1000-1
+#define TIM1_ARR 200-1
 
 //在定时器向下溢出中断中更新三相桥的占空比
 void Svpwm_Calculate(Svpwm_t *Svpwm,float Ud,float Ua_ref,float Ub_ref,float Uc_ref)

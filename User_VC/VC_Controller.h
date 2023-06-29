@@ -9,11 +9,13 @@ extern "C" {
 
 extern float Ud,ia,ib,ic,ua,ub,uc;//直接采样值
 extern CT_data_t Sample_i,Sample_u;//储存并处理采样数据
-extern float Um_pll,theta_pll;//采自锁相环
+extern float amplitude_pll,theta_pll;//采自锁相环
  
 extern float id_ref,iq_ref;//电流环输入
 extern float ud_ref,uq_ref;//电流环输出
 extern float Ua_ref,Ub_ref,Uc_ref;//SVPWM输入
+
+extern float Ud_Servo,Uq_Servo,Id_Servo,Iq_Servo,theta_ref;//对外接口
 
 typedef struct{
     float KP;											//PID参数P
@@ -38,11 +40,12 @@ typedef struct
 extern VC_t hVC;
 
 void User_VC_init();
-void HAL_TIM_In_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
+void Task_Vc_Loop(TIM_HandleTypeDef *htim);
 
 void VoltageServo(float* Ua_out,float* Ub_out,float* Uc_out,float ud_ref,float uq_ref,float theta_pll);
-void CurrentServo(VC_t* hVC,float ud_ref,float uq_ref,float theta_pll);
+void CurrentServo(VC_t* hVC_in,float ud_ref,float uq_ref,float theta_pll);
 
+void PID_Calc(PID_t *pid);
 #ifdef __cplusplus
 }
 #endif
